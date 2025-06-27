@@ -8,10 +8,9 @@ export default function Movie() {
   const KEY = process.env.REACT_APP_KEY;
 
   const [movie, setMovie] = useState(null);
-  const [genres, setGenres] = useState([]); // all TMDB genres
+  const [genres, setGenres] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch genres once  
   useEffect(() => {
     fetch(`https://api.themoviedb.org/3/genre/movie/list?language=pt-BR&api_key=${KEY}`)
       .then((response) => response.json())
@@ -19,7 +18,6 @@ export default function Movie() {
       .catch((err) => console.error(err));
   }, [KEY]);
 
-  // Fetch all movies (as before)
   useEffect(() => {
     fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${KEY}&language=pt-BR`
@@ -35,7 +33,6 @@ export default function Movie() {
 
   if (loading || !movie) return <div>Loading...</div>;
 
-  // Map genre IDs to names
   const movieGenreNames = movie.genre_ids
     ? movie.genre_ids.map((gid) => {
         const genreObj = genres.find((g) => g.id === gid);

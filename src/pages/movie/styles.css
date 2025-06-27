@@ -64,12 +64,12 @@ nav h1 {
   z-index: 0;
   background-position: center;
   background-size: cover;
-  opacity: 0.13; /* adjust for your taste */
-  pointer-events: none; /* Let clicks through */
-  filter: blur(4px); /* Optional: blur for extra effect */
+  opacity: 0.13; 
+  pointer-events: none; 
+  filter: blur(4px); 
 }
 
 nav, .container, .img_movie, .descricao {
   position: relative;
-  z-index: 1; /* Ensure your content is above the bg */
+  z-index: 1;
 }

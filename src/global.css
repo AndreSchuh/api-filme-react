@@ -9,7 +9,7 @@ body {
   background-color: black;
   color: white;
   -ms-overflow-style: none; 
-  scrollbar-width: none;  /* Firefox */
+  scrollbar-width: none; 
 }
 
 ::-webkit-scrollbar {
