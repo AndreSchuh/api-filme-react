@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Movie, MovieList, Btn, GenreFilterBar, GenreButton } from "./style";
+import { Container, Movie, MovieList, GenreFilterBar, GenreButton, SearchInput } from "./style";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -7,6 +7,7 @@ function Home() {
     const [movies, setMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [selectedGenre, setSelectedGenre] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(""); // 1. Novo estado
 
     const KEY = process.env.REACT_APP_KEY;
 
@@ -23,48 +24,56 @@ function Home() {
             .catch(err => console.error(err));
     }, [KEY]);
 
-    const filteredMovies =
-        selectedGenre == null
-            ? movies
-            : movies.filter(movie =>
-                movie.genre_ids.includes(selectedGenre)
-            );
+    // 3. Adapte o filtro para usar o termo de busca
+    const filteredMovies = movies.filter(movie => {
+        const matchesGenre = selectedGenre == null || movie.genre_ids.includes(selectedGenre);
+        const matchesSearch = movie.title.toLowerCase().includes(searchTerm.toLowerCase());
+        return matchesGenre && matchesSearch;
+    });
 
     return (
         <Container>
             <h1>Movies</h1>
+
+            {/* 2. Input de Pesquisa */}
+             <SearchInput
+                type="text"
+                placeholder="Pesquisar filme..."
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+            />
             {/* Genre Filter Bar */}
-<GenreFilterBar>
-  <GenreButton
-    active={selectedGenre === null}
-    onClick={() => setSelectedGenre(null)}
-  >
-    Todos
-  </GenreButton>
-  {genres.map((genre) => (
-    <GenreButton
-      key={genre.id}
-      active={selectedGenre === genre.id}
-      onClick={() => setSelectedGenre(genre.id)}
-    >
-      {genre.name}
-    </GenreButton>
-  ))}
-</GenreFilterBar>
-            {/* Movie List  */}
+            <GenreFilterBar>
+                <GenreButton
+                    active={selectedGenre === null}
+                    onClick={() => setSelectedGenre(null)}
+                >
+                    Todos
+                </GenreButton>
+                {genres.map((genre) => (
+                    <GenreButton
+                        key={genre.id}
+                        active={selectedGenre === genre.id}
+                        onClick={() => setSelectedGenre(genre.id)}
+                    >
+                        {genre.name}
+                    </GenreButton>
+                ))}
+            </GenreFilterBar>
+            
+            {/* Lista de filmes */}
             <MovieList>
                 {filteredMovies.map((movie) => {
                     return (
                         <Movie key={movie.id}>
-                            <img
-                                src={`${imagePath}${movie.poster_path}`}
-                                alt={movie.title}
-                            />
-                            <span>{movie.title}</span>
-
                             <Link to={`/${movie.id}`}>
-                                <Btn>Detalhes</Btn>
+                                <img
+                                    src={`${imagePath}${movie.poster_path}`}
+                                    alt={movie.title}
+                                    style={{ cursor: 'pointer' }}
+                                />
                             </Link>
+                            <span>{movie.title}</span>
                         </Movie>
                     );
                 })}

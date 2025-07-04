@@ -92,3 +92,27 @@ export const GenreButton = styled.button`
     opacity: 1;
   }
 `;
+
+export const SearchInput = styled.input`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 30px;
+  border: 2px solid #222;
+  border-radius: 999px;
+  font-size: 1.04rem;
+  background: #000;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+
+  &:focus {
+    border-color: #444;
+    box-shadow: 0 2px 12px #4442;
+  }
+  &::placeholder {
+    color: #888b;
+    font-weight: 500;
+    opacity: 1;
+  }
+`;
