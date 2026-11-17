@@ -1,51 +1,24 @@
-# API DE FILMES USANDO REACTJS
+# Catálogo de Filmes com React
 
-Por [Diego Candido](https://diegocandido.com)
+Aplicação em **React** que consome a API do [TMDB](https://www.themoviedb.org/) para listar os filmes populares e mostrar os detalhes de cada um. Feito a partir do projeto-base de [Diego Candido](https://diegocandido.com).
 
+## Funcionalidades
+- Listagem de filmes populares em português
+- Página de detalhes do filme com gêneros
+- Navegação com React Router
+- Estilização com styled-components
 
-Montei esse projeto bem básico para consumir uma API Rest com lista de filmes.
+## Tecnologias
+React 18 · React Router 6 · styled-components · API TMDB
 
-
-
-## Site que fornece a API grátis: 
+## Como rodar
+1. Gere uma chave em https://www.themoviedb.org/settings/api
+2. Crie um arquivo `.env` na raiz:
 ```
-https://www.themoviedb.org/
+REACT_APP_KEY=sua_chave_aqui
 ```
-
-## Documentação Oficial do projeto:
-```
-https://www.themoviedb.org/documentation/api
-```
-
-Irá ser necessário a geração de uma chave privada nesse link:
-```
-https://www.themoviedb.org/settings/api
-```
-
-## Token no arquivo .ENV ##
-Para acessar a API Restfull do site é necessário criar um token e colocar em um arquivo .ENV na raíz do projeto. Conforme imagem abaixo:
-
-![print](https://user-images.githubusercontent.com/1766790/191596782-51cd52f4-d471-4930-9e33-d792ad4aeeb1.JPG)
-
-
-## Clonando o Repositório ##
-Com o Git e o Node.js instalado na sua maquina e a **URL** do projeto em mãos, cria em algum lugar do seu pc uma pasta para criarmos uma copia do repositório, dentro dela abra o **cmd** ou **powershell** e digite os comandos abaixo:
-```
-git clone https://github.com/diegocandido/react-filmes.git
-cd react-filmes
+3. Execute:
+```bash
 npm install
 npm start
 ```
-
-## Tela Inicial do projeto:
-
-![screan](https://user-images.githubusercontent.com/81689363/190420116-177e6087-c1dd-4276-bef1-1dd20e575039.PNG)
-
-
-## Tela de detalhes do filme:
-
-![details](https://user-images.githubusercontent.com/81689363/190419902-82b9ce94-3944-4bdb-ad1c-e35a93b142e1.PNG)
-
-
-
- 
